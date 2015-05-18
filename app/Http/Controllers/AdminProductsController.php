@@ -14,8 +14,26 @@ class AdminProductsController extends Controller
         $this->product = $product;
     }
     
-    public function index()
+    public function index(Product $product = null)
     {
-        return view('products', ['products' => $this->product->all()]);
+        if ($product->id) {
+            return view('product_details', ['product' => $product]);
+        }
+        return view('products_list', ['products' => $this->product->all()]);
+    }
+    
+    public function create(Request $request)
+    {
+        return dd($request);
+    }
+    
+    public function update(Product $product)
+    {
+        return dd($product);
+    }
+    
+    public function delete(Product $product)
+    {
+        return dd($product);
     }
 }

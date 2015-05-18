@@ -42,6 +42,8 @@
 			<div class="content">
 				<div class="title">Laravel 5</div>
 				<div class="quote">{{ Inspiring::quote() }}</div>
+                                <p><a href="{{ route('categories') }}">Categories</a></p>
+                                <p><a href="{{ route('products') }}">Products</a></p>
 			</div>
 		</div>
 	</body>

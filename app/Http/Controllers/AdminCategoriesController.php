@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use Illuminate\Http\Request;
 use CodeCommerce\Category;
 
 class AdminCategoriesController extends Controller
@@ -14,8 +15,26 @@ class AdminCategoriesController extends Controller
         $this->category = $category;
     }
     
-    public function index()
+    public function index(Category $category = null)
     {
-        return view('categories', ['categories' => $this->category->all()]);
+        if ($category->id) {
+            return view('category_details', ['category' => $category]);
+        }
+        return view('categories_list', ['categories' => $this->category->all()]);
+    }
+    
+    public function create(Request $request)
+    {
+        return dd($request);
+    }
+    
+    public function update(Category $category)
+    {
+        return dd($category);
+    }
+    
+    public function delete(Category $category)
+    {
+        return dd($category);
     }
 }
