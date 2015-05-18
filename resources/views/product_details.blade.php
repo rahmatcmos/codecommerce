@@ -7,6 +7,6 @@
         <h1>Product {{ $product->name }}</h1>
         <p>{{ $product->description }}</p>
         <p>$ {{ $product->price }}</p>
-        <a href="{{ route('products') }}">< Voltar</a>
+        <a href="{{ route('products') }}">< Back</a>
     </body>
 </html>
