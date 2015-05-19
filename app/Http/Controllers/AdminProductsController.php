@@ -3,6 +3,7 @@
 namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Product;
+use CodeCommerce\Http\Requests\ProductRequest;
 
 class AdminProductsController extends Controller
 {
@@ -17,23 +18,43 @@ class AdminProductsController extends Controller
     public function index(Product $product = null)
     {
         if ($product->id) {
-            return view('product_details', ['product' => $product]);
+            return view('admin.products.details', compact('product'));
         }
-        return view('products_list', ['products' => $this->product->all()]);
+        return view('admin.products.index', ['products' => $this->product->all()]);
     }
     
-    public function create(Request $request)
+    public function create()
     {
-        return dd($request);
+        return view('admin.products.create');
     }
     
-    public function update(Product $product)
+    public function store(ProductRequest $request)
     {
-        return dd($product);
+        $data = $request->all();
+        $this->product->fill($data);
+        $this->product->save();            
+        return redirect()->route('products');
+    }
+    
+    public function edit(Product $product)
+    {
+        return view('admin.products.edit', compact('product'));
+    }
+    
+    public function update(ProductRequest $request, Product $product)
+    {
+        $product->update($request->all());
+        return redirect()->route('products');
+    }
+    
+    public function destroy(Product $product)
+    {
+        return view('admin.products.delete', compact('product'));
     }
     
     public function delete(Product $product)
     {
-        return dd($product);
+        $product->delete();
+        return redirect()->route('products');
     }
 }

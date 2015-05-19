@@ -1,0 +1,43 @@
+@extends('app')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-header">
+                <h1>New Category</h1>
+            </div>
+        </div>
+    </div>
+    @if($errors->any())
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+    @endif
+    <div class="row">
+        <div class="col-lg-6">
+            {!! Form::open(['route' => ['new_category']]) !!}
+            <div class='form-group'>
+                {!! Form::label('name', 'Name: ') !!}
+                {!! Form::text('name', null, ['class' => 'form-control']) !!}
+            </div>
+            <div class='form-group'>
+                {!! Form::label('description', 'Description: ') !!}
+                {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+            </div>
+            <div class='form-group'>
+                {!! Form::submit('Add Category', ['class' => 'btn btn-primary']) !!}
+                <a href='{{ route('categories') }}' class='btn btn-danger'>Cancel</a>
+            </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+</div>
+@endsection
