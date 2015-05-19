@@ -23,14 +23,18 @@
     @endif
     <div class="row">
         <div class="col-lg-6">
-            {!! Form::open(['route' => ['new_category']]) !!}
+            {!! Form::open(['route' => ['new_category'], 'class' => 'form form-horizontal']) !!}
             <div class='form-group'>
-                {!! Form::label('name', 'Name: ') !!}
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                {!! Form::label('name', 'Name: ', ['class' => 'col-sm-2 control-label']) !!}
+                <div class='col-sm-10'>
+                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                </div>
             </div>
             <div class='form-group'>
-                {!! Form::label('description', 'Description: ') !!}
-                {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+                {!! Form::label('description', 'Description: ', ['class' => 'col-sm-2 control-label']) !!}
+                <div class='col-sm-10'>
+                    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+                </div>
             </div>
             <div class='form-group'>
                 {!! Form::submit('Add Category', ['class' => 'btn btn-primary']) !!}
