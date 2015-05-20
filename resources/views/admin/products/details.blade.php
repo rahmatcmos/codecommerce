@@ -10,6 +10,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+            <p>Category: {{ $product->category ? $product->category->name : 'none' }}</p>
             <p>{{ $product->description }}</p>
             <p>$ {{ number_format($product->price, 2) }}</p>
             <p>Featured: {{ $product->featured ? 'Yes' : 'No' }}</p>

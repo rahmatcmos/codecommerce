@@ -20,7 +20,7 @@ class AdminCategoriesController extends Controller
         if ($category->id) {
             return view('admin.categories.details', compact('category'));
         }
-        return view('admin.categories.index', ['categories' => $this->category->all()]);
+        return view('admin.categories.index', ['categories' => $this->category->paginate(5)]);
     }
     
     public function create()

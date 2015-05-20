@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <p><a href="{{ route('create_product') }}" class="btn btn-primary">New Product</a></p>
+            <p><a href="{{ route('create_product') }}" class="btn btn-primary btn-xs">New Product</a></p>
         </div>
     </div>
     <div class="row">
@@ -23,6 +23,7 @@
                         <td class="text-center">Price</td>
                         <td class="text-center">Featured</td>
                         <td class="text-center">Recommend</td>
+                        <td class="text-center">Category</td>
                         <td class="text-center">Action</td>
                     </tr>
                 </thead>
@@ -34,14 +35,18 @@
                     <td class="text-right">$ {{ number_format($product->price, 2) }}</td>
                     <td class="text-center">@if($product->featured)<span class="glyphicon glyphicon-ok text-success"></span>@endif</td>
                     <td class="text-center">@if($product->recommend)<span class="glyphicon glyphicon-ok text-success"></span>@endif</td>
-                    <td>
-                        <a href="{{ route('edit_product', array($product->id)) }}" class="btn btn-info btn-xs btn-block">Edit</a> 
-                        <a href="{{ route('confirm_delete_product', array($product)) }}" class="btn btn-danger btn-xs btn-block">Delete</a>
+                    <td class="text-center">{{ $product->category ? $product->category->name : null }}</td>
+                    <td class="text-center">
+                        <a href="{{ route('edit_product', array($product->id)) }}" class="btn btn-info btn-xs">Edit</a> 
+                        <a href="{{ route('confirm_delete_product', array($product)) }}" class="btn btn-danger btn-xs">Delete</a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
             </table>
+            <div class="text-center">
+                {!! $products->render() !!}
+            </div>
         </div>
     </div>
 </div>

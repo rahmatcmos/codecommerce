@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <p>Are you sure you want to delete product <strong>{{ $product->name }}</strong>?</p>
+            <p>Are you sure you wish to delete the product <strong>{{ $product->name }}</strong>?</p>
             <blockquote class="text-danger"><strong>This operation cannot be undone!</strong></blockquote>
             {!! Form::open(['route' => ['delete_product', $product], 'method' => 'delete']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
