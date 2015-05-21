@@ -15,7 +15,20 @@
             <p>$ {{ number_format($product->price, 2) }}</p>
             <p>Featured: {{ $product->featured ? 'Yes' : 'No' }}</p>
             <p>Recommend: {{ $product->recommend ? 'Yes' : 'No' }}</p>
-            <a href="{{ route('products') }}" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+            @foreach($product->images as $image)
+            <div class="col-sm-3 col-lg-4">
+                <img src='{{ Storage::disk('s3')->getDriver()->getAdapter()->getClient()->getObjectUrl('projeto-laravel-code', 'uploads/' . $image->id.'.'.$image->extension) }}' class="img img-responsive" />
+            </div>
+            @endforeach            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                <a href="{{ route('products') }}" class="btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-chevron-left"></span> Back
+                </a>
+            </p>
         </div>
     </div>
 </div>

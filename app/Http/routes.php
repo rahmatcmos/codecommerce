@@ -67,7 +67,7 @@ Route::group(['prefix' => 'admin'], function() {
             'as'   => 'confirm_delete_product',
             'uses' => 'AdminProductsController@destroy'
         ]);
-        Route::delete('{product}', [
+        Route::delete('{id}', [
             'as'   => 'delete_product', 
             'uses' => 'AdminProductsController@delete'
         ]);
@@ -75,7 +75,26 @@ Route::group(['prefix' => 'admin'], function() {
             'as'   => 'products', 
             'uses' => 'AdminProductsController@index']
         );
-    });    
+        Route::group(['prefix' => '{product}/images'], function() {
+            Route::get('',[
+                'as'   => 'products_images', 
+                'uses' => 'AdminProductsController@images']
+            );
+            Route::get('create', [
+                'as'   => 'create_image',
+                'uses' => 'AdminProductsController@createImage'
+            ]);
+            Route::post('store', [
+                'as'   => 'store_image',
+                'uses' => 'AdminProductsController@storeImage'
+            ]);
+            Route::get('{id}/deleteImage', [
+                'as'   => 'detele_image',
+                'uses' => 'AdminProductsController@deleteImage'
+            ]);
+        });
+        
+    }); 
 });
 
 Route::get('home', 'HomeController@index');

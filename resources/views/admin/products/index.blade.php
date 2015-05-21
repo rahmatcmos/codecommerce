@@ -37,8 +37,9 @@
                     <td class="text-center">@if($product->recommend)<span class="glyphicon glyphicon-ok text-success"></span>@endif</td>
                     <td class="text-center">{{ $product->category ? $product->category->name : null }}</td>
                     <td class="text-center">
-                        <a href="{{ route('edit_product', array($product->id)) }}" class="btn btn-info btn-xs">Edit</a> 
-                        <a href="{{ route('confirm_delete_product', array($product)) }}" class="btn btn-danger btn-xs">Delete</a>
+                        <a href="{{ route('products_images', [$product]) }}" class="btn btn-success btn-xs"><span class="fa fa-file-image-o"></span> View Images</a>
+                        <a href="{{ route('edit_product', [$product]) }}" class="btn btn-info btn-xs">Edit</a> 
+                        <a href="{{ route('confirm_delete_product', [$product]) }}" class="btn btn-danger btn-xs">Delete</a>
                     </td>
                 </tr>
                 @endforeach
