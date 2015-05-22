@@ -4,6 +4,7 @@ namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use CodeCommerce\Http\Requests\ProductRequest;
 use CodeCommerce\Http\Requests\ProductImageRequest;
 use CodeCommerce\Category;
@@ -37,8 +38,11 @@ class AdminProductsController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->all();
+        $tagsIDs = $this->getTagsIDs($data['tags']);
+        unset($data['tags']);
         $this->product->fill($data);
-        $this->product->save();            
+        $this->product->save();    
+        $this->product->tags()->sync($tagsIDs);
         return redirect()->route('products');
     }
     
@@ -50,7 +54,11 @@ class AdminProductsController extends Controller
     
     public function update(ProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $data = $request->all();
+        $tagsIDs = $this->getTagsIDs($data['tags']);
+        unset($data['tags']);
+        $product->tags()->sync($tagsIDs);
+        $product->update($data);
         return redirect()->route('products');
     }
     
@@ -103,5 +111,24 @@ class AdminProductsController extends Controller
             Storage::disk('s3')->delete($filename);
             $image->delete();
         }
+    }
+    
+    private function getTagsIDs($tagList)
+    {
+        $tags = explode(', ',$tagList);
+        $tagsIDs = array();
+
+        foreach($tags as $tagName) {
+            $tagName = trim($tagName);
+            $tag = Tag::where('name', '=', $tagName)->first();
+            if (!$tag && !empty($tagName)) {
+                $tag = Tag::create(['name' => $tagName]);
+            }
+            if(!in_array($tag->id, $tagsIDs)) {
+                $tagsIDs[] = $tag->id;
+            }
+        }
+        
+        return $tagsIDs;
     }
 }

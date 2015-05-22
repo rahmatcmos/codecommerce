@@ -79,6 +79,12 @@
                 </div>
             </div>
             <div class='form-group'>
+                {!! Form::label('tags', 'Tags: ', ['class' => 'col-sm-2 control-label']) !!}
+                <div class='col-sm-10'>
+                {!! Form::textarea('tags', $product->allTags, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class='form-group'>
                 {!! Form::submit('Update Product', ['class' => 'btn btn-primary']) !!}
                 <a href='{{ route('products') }}' class='btn btn-danger'>Cancel</a>
             </div>

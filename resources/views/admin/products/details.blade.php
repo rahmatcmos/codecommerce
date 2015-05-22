@@ -15,6 +15,12 @@
             <p>$ {{ number_format($product->price, 2) }}</p>
             <p>Featured: {{ $product->featured ? 'Yes' : 'No' }}</p>
             <p>Recommend: {{ $product->recommend ? 'Yes' : 'No' }}</p>
+            <div class="col-sm-6">
+                <h5>Tags</h5>
+                @foreach($product->tags as $tag)
+                <span class="label label-primary">{{ $tag->name }}</span>
+                @endforeach
+            </div>
             @foreach($product->images as $image)
             <div class="col-sm-3 col-lg-4">
                 <img src='{{ Storage::disk('s3')->getDriver()->getAdapter()->getClient()->getObjectUrl('projeto-laravel-code', 'uploads/' . $image->id.'.'.$image->extension) }}' class="img img-responsive" />
@@ -22,6 +28,7 @@
             @endforeach            
         </div>
     </div>
+    <br />
     <div class="row">
         <div class="col-lg-12">
             <p>
