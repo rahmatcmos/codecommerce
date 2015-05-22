@@ -115,7 +115,7 @@ class AdminProductsController extends Controller
     
     private function getTagsIDs($tagList)
     {
-        $tags = explode(', ',$tagList);
+        $tags = explode(',',$tagList);
         $tagsIDs = array();
 
         foreach($tags as $tagName) {
