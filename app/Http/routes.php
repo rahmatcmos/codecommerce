@@ -13,7 +13,12 @@
 
 Route::patterns(['id' => '[0-9]+']);
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'StoreController@index');
+
+Route::get('/category/{category}', [
+    'as'   => 'products_by_category',
+    'uses' => 'StoreController@category'
+]);
 
 Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => 'categories'], function() {
