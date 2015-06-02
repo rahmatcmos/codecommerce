@@ -12,5 +12,28 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('app.less');
+    mix.styles([
+        'bootstrap.min.css',
+        'font-awesome.min.css',
+        'prettyPhoto.css',
+        'animate.css',
+        'main.css',
+        'responsive.css',
+    ], 'public/css/codeCommerce.css');
+
+    mix.scripts([
+        'jquery.js',
+        'bootstrap.min.js',
+        'jquery.scrollUp.min.js',
+        'price-range.js',
+        'jquery.prettyPhoto.js',
+        'main.js',
+    ], 'public/js/codeCommerce.js');
+
+    mix.version([
+        'css/codeCommerce.css',
+        'js/codeCommerce.js'
+    ]);
+
+    mix.copy('resources/assets/fonts', 'public/build/fonts');
 });
