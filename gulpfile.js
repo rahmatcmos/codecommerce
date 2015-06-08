@@ -36,4 +36,6 @@ elixir(function(mix) {
     ]);
 
     mix.copy('resources/assets/fonts', 'public/build/fonts');
+    mix.copy('resources/assets/images', 'public/build/images');
+    mix.copy('resources/assets/images', 'public/images');
 });
